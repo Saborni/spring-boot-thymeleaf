@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<!-- 
+Conquer Template
+http://www.templatemo.com/preview/templatemo_426_conquer
+-->
+<head>
+<title>Conquer HTML5 Template</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,600,700,800' rel='stylesheet' type='text/css'>
+<!-- Style Sheets -->
+<link rel="stylesheet" href="css/animate.css">
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/font-awesome.min.css">
+<link rel="stylesheet" href="css/templatemo_misc.css">
+<link rel="stylesheet" href="css/templatemo_style.css">
+<link rel="stylesheet" href="css/styles.css">
+<!-- JavaScripts -->
+<script src="js/jquery-1.11.1.min.js"></script>
+<script src="js/bootstrap-dropdown.js"></script>
+<script src="js/bootstrap-collapse.js"></script>
+<script src="js/bootstrap-tab.js"></script>
+<script src="js/jquery.singlePageNav.js"></script>
+<script src="js/jquery.flexslider.js"></script>
+<script src="js/custom.js"></script>
+<script src="js/jquery.lightbox.js"></script>
+<script src="js/templatemo_custom.js"></script>
+<script src="js/responsiveCarousel.min.js"></script>
+</head>
+<body>
+<!-- header start -->
+
+
+<div id="templatemo_home_page">
+  <div class="templatemo_topbar">
+    <div class="container">    
+        <div class="templatemo_title"><h2 style="font-family: 'Times New Roman', Times, serif"><b>Book Library</b></h2></div>
+    </div>
+  </div>
+  
+  <div class="templatemo_headerimage">
+    <div class="flexslider">
+      <ul class="slides">
+        <li><img src="images/slider/1.jpg" alt="Slide 1"></li>
+        <li><img src="images/slider/2.jpg" alt="Slide 2"></li>
+        <li><img src="images/slider/3.jpg" alt="Slide 3"></li>
+      </ul>
+    </div>
+  </div>
+  <div class="slider-caption">
+    <div class="templatemo_homewrapper">
+      <div class="templatemo_hometitle">Pages guilded for ages...</div>
+      <div class="templatemo_hometext">A book is a power of knowledge that everyone should possess.</div>
+      <div class="templatemo_homebutton"><a href="#templatemo_service_page">Continues</a></div>
+    </div>
+  </div>
+</div>
+<!-- header end -->
+<div class="clear"></div>
+<!-- service start -->
+<div class="templatemo_servicewrapper" id="templatemo_service_page">
+  <div class="container">
+    <div class="row">
+      <h1>Library Services</h1>
+      <div class="col-md-12 templatemo_marginbot"></div>
+      <div class="col-md-3 col-sm-6 x">
+        <div class="templatemo_servicebox margin_bottom_1col margin_bottom_2col">
+          <div class="templatemo_serviceicon"><span class="fa fa-book"></span></div>
+          <div id="addBook" class="templatemo_service_title"><a href="#!">Add a book</a></div>
+          <p>You can add a name with author and price details</p>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6 x">
+        <div class="templatemo_servicebox margin_bottom_1col margin_bottom_2col">
+          <div class="templatemo_serviceicon"><span class="fa fa-search-plus"></span></div>
+          <div id="viewBook" class="templatemo_service_title"><a href="#!">View books</a></div>
+          <p>All the books in the library can be seen here.</p>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6 x">
+        <div class="templatemo_servicebox margin_bottom_1col">
+          <div class="templatemo_serviceicon"><span class="fa fa-pencil-square-o"></span></div>
+          <div id="modifyBook" class="templatemo_service_title"><a href="#!">Modify a book</a></div>
+          <p>Want to change a book details?</p><br>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6 x">
+        <div class="templatemo_servicebox">
+          <div class="templatemo_serviceicon"><span class="fa fa-times"></span></div>
+          <div id="deleteBook" class="templatemo_service_title"><a href="#!">Delete a book</a></div>
+          <p>You can delete a book.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- service end -->
+<div class="clear" style="background-color: blue"></div>
+<script>
+//scroll to specific id when click on menu
+// Cache selectors
+var lastId,
+    topMenu = $("#top-menu"),
+    topMenuHeight = topMenu.outerHeight() + 15,
+    // All list items
+    menuItems = topMenu.find("a"),
+    // Anchors corresponding to menu items
+    scrollItems = menuItems.map(function() {
+        var item = $($(this).attr("href"));
+        if (item.length) {
+            return item;
+        }
+    });
+// Bind click handler to menu items
+// so we can get a fancy scroll animation
+menuItems.click(function(e) {
+    var href = $(this).attr("href"),
+        offsetTop = href === "#" ? 0 : $(href).offset().top - topMenuHeight + 1;
+    $('html, body').stop().animate({
+        scrollTop: offsetTop
+    }, 300);
+    e.preventDefault();
+});
+// Bind to scroll
+$(window).scroll(function() {
+    // Get container scroll position
+    var fromTop = $(this).scrollTop() + topMenuHeight;
+    // Get id of current scroll item
+    var cur = scrollItems.map(function() {
+        if ($(this).offset().top < fromTop)
+            return this;
+    });
+    // Get the id of the current element
+    cur = cur[cur.length - 1];
+    var id = cur && cur.length ? cur[0].id : "";
+    if (lastId !== id) {
+        lastId = id;
+        // Set/remove active class
+        menuItems
+            .parent().removeClass("active")
+            .end().filter("[href=#" + id + "]").parent().addClass("active");
+    }
+});
+</script>
+</body>
+</html>
